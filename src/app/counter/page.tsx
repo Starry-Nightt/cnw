@@ -2,6 +2,7 @@
 
 import { increment, decrement } from "@/redux/counter-slice";
 import { RootState } from "@/redux/store";
+import appHttpClient from "@/shared/service/app-http-client";
 import { Button, List, Space, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,11 +15,11 @@ function Counter() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
-      });
+    async function getData() {
+      const data = await appHttpClient.get('https://jsonplaceholder.typicode.com/todos')
+      console.log(data)
+    }
+    getData()
   }, []);
 
   return (

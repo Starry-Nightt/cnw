@@ -1,0 +1,3 @@
+enum LocalStorageKey {
+  TOKEN = "token",
+}
